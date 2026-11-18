@@ -26,6 +26,13 @@ on:
 permissions:
   contents: read
 
+# A new push to a pull request cancels the run it supersedes, so the newest required check does
+# not queue behind a commit nobody will merge. Safe here because this workflow reads and never
+# writes or calls the action; a run in progress on main is never cancelled, it is G1's evidence.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   checks:
     name: ci / python
