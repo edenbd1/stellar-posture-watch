@@ -21,5 +21,6 @@ files = [
     "tests/test_sync_issue.py",
     "tests/test_check_action.py",
     "tests/test_roadmap_gate.py",
+    "tests/test_ci_timeout.py",
 ]
 check_untyped_defs = true

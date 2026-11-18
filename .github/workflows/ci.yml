@@ -30,6 +30,10 @@ jobs:
   checks:
     name: ci / python
     runs-on: ubuntu-latest
+    # Covers the whole job: the cold dev-tool install, check_action.py, the suite, ruff and
+    # mypy. The slowest green run read so far took 25 seconds, so 15 minutes is headroom for a
+    # slow index rather than a guess at the work, and a hang goes red here instead of at 360.
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
